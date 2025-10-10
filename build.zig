@@ -34,7 +34,7 @@ pub fn build(b: *std.Build) void {
         miniaudio_lib.linkFramework("CoreFoundation");
         miniaudio_lib.linkFramework("AudioUnit");
         miniaudio_lib.linkFramework("AudioToolbox");
-    } else if (target.result.os.tag == .linux) {
+    } else if (target.result.os.tag == .linux and !target.result.abi.isAndroid()) {
         miniaudio_lib.linkSystemLibrary("pthread");
         miniaudio_lib.linkSystemLibrary("m");
         miniaudio_lib.linkSystemLibrary("dl");
