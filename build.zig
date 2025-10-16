@@ -47,12 +47,11 @@ pub fn build(b: *std.Build) void {
     miniaudio.addCSourceFile(.{
         .file = b.path("libs/miniaudio/miniaudio.c"),
         .flags = &.{
-            "-DMA_NO_WEBAUDIO",
+            "-DMA_ENABLE_ONLY_SPECIFIC_BACKENDS",
+            "-DMA_ENABLE_AAUDIO",
             "-DMA_NO_ENCODING",
-            "-DMA_NO_NULL",
-            "-DMA_NO_JACK",
-            "-DMA_NO_DSOUND",
-            "-DMA_NO_WINMM",
+            "-DMA_NO_ENGINE",
+            "-DMA_NO_GENERATION",
             "-std=c99",
             "-fno-sanitize=undefined",
             if (target.result.os.tag == .macos) "-DMA_NO_RUNTIME_LINKING" else "",
